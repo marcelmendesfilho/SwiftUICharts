@@ -55,13 +55,29 @@ public struct HorizontalBarChartView: View {
                     RoundedRectangle(cornerRadius: 8, style: .continuous)
                         .foregroundColor(bar.legend.color)
                         .frame(width: CGFloat(bar.value / self.max) * barMaxWidth, height: 16)
+                    
+                    Text(bar.label) + Text(" -")
+                    
+                    if let image = bar.image{
+                        ZStack{
+                            Rectangle()
+                                .frame(width: 30, height: 30)
+                                .background(Color.white)
 
-                    Circle()
-                        .foregroundColor(bar.legend.color)
-                        .frame(width: 8, height: 8)
+                            image
+                                .resizable()
+                                .frame(width: 40, height: 40)
+                                .aspectRatio(contentMode: .fill)
+                                .cornerRadius(10)
+                        }
+                    }
 
-                    Text(bar.legend.label) + Text(", ") + Text(bar.label)
+//                    Circle()
+//                        .foregroundColor(bar.legend.color)
+//                        .frame(width: 8, height: 8)
 
+                     Text(bar.legend.label)
+                    
                     // TODO: temp fix
                     Spacer()
                 }
